@@ -17,8 +17,6 @@
     } elseif($amount_in_huf > 1000000) {
         $amount_error = "This number can't be higher than 1.000.000";
     }
-
-
   
     $expires = \DateTime::createFromFormat('my', $_POST['exp_month'].$_POST['exp_year']);
     $now     = date('M Y');
@@ -27,20 +25,7 @@
         $expiration_error = 'Expired';
     }
 
-
-    function isValid($num) {
-        $num = preg_replace('/[^\d]/', '', $num);
-        $sum = '';
-    
-        for ($i = strlen($num) - 1; $i >= 0; -- $i) {
-            $sum .= $i & 1 ? $num[$i] : $num[$i] * 2;
-        }
-    
-        return array_sum(str_split($sum)) % 10 === 0;
-    }
-
-    
-
     include('index.php');
     include('exchange.php');
+    include('luhnValidation.php');
 ?>
