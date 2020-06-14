@@ -41,8 +41,8 @@
                 placeholder="Expiration (Year)">
 
             </div>
-            <?php if(isset($expiration_error)) { ?>
-                <p><?php echo $expiration_error ?></p>
+            <?php if(isset($expiration_alert)) { ?>
+                <p><?php echo $expiration_alert ?></p>
             <?php } ?>
         <input 
             name="amount_in_huf"

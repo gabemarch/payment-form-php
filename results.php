@@ -18,11 +18,22 @@
         $amount_error = "This number can't be higher than 1.000.000";
     }
   
-    $expires = \DateTime::createFromFormat('my', $_POST['exp_month'].$_POST['exp_year']);
-    $now     = date('M Y');
+    function expiration_check($month, $year) {
+        $exp = mktime(0, 0, 0, $month + 1, 1, $year);
+        $current = time();
+        $max_exp = $current + (10 * 365 * 24 * 60 * 60);
 
-    if ($expires < $now) {
-        $expiration_error = 'Expired';
+        if ($exp > $current && $exp < $max_exp) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    if(expiration_check($exp_month, $exp_year)) {
+       
+    } else {
+        $expiration_alert = 'Expired Credit Card';
     }
 
     include('index.php');
